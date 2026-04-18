@@ -1,0 +1,6 @@
+{;; Control Plane - Process Management API
+ :paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}}
+ :aliases {:run {:exec-fn control-plane.main/-main
+               :extra-args ["8090"]}
+          :repl {:extra-paths ["src"]}}}
