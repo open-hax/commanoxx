@@ -1,0 +1,23 @@
+{
+  "name": "commanoxx",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "shadow-cljs compile app",
+    "watch": "shadow-cljs watch app",
+    "release": "shadow-cljs release app"
+  },
+  "dependencies": {
+    "@open-hax/uxx": "file:../../../../../../tmp/package",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "scheduler": "^0.23.0"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^3.3.5"
+  }
+}

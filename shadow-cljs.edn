@@ -1,0 +1,17 @@
+{:source-paths ["src"]
+
+ :js-options
+ {:js-package-dirs ["node_modules" "node_modules/.pnpm"]}
+
+ :dependencies
+ [[lilactown/helix "0.2.2"]]
+
+ :http {:port 8091}
+
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "public/js"
+   :modules {:index {:init-fn control-plane.ui.core/mount!}}
+   :compiler-options {:output-feature-set :es-next}
+   :npm {:react "react" :react-dom "react-dom"}}}}
