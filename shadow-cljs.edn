@@ -18,4 +18,4 @@
    :output-dir "public/js"
    :modules {:index {:init-fn control-plane.ui.core/mount!}}
    :compiler-options {:output-feature-set :es-next}
-   :devtools {:repl-init-ns control-plane.ui.core}}}}  ; <-- AND THIS
+   :devtools {:repl-init-ns control-plane.ui.core}}}}
