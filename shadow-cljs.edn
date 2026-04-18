@@ -1,12 +1,14 @@
 {:source-paths ["src"]
 
+ :nrepl {:port 7888}
+
  :js-options
  {:js-package-dirs ["node_modules" "node_modules/.pnpm"]}
 
  :dependencies
  [[lilactown/helix "0.2.2"]]
 
- :http {:port 8091}
+ :dev-http {8091 "public"}   ; <-- serves public/ at localhost:8090
 
  :builds
  {:app
@@ -14,4 +16,5 @@
    :output-dir "public/js"
    :modules {:index {:init-fn control-plane.ui.core/mount!}}
    :compiler-options {:output-feature-set :es-next}
-   :npm {:react "react" :react-dom "react-dom"}}}}
+   :npm {:react "react" :react-dom "react-dom"}
+   :devtools {:repl-init-ns control-plane.ui.core}}}}  ; <-- AND THIS
