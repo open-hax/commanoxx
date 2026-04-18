@@ -8,7 +8,7 @@
     "release": "shadow-cljs release app"
   },
   "dependencies": {
-    "@open-hax/uxx": "file:../../../../../../tmp/package",
+  "@open-hax/uxx": "workspace:",
     "prism-react-renderer": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
