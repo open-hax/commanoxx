@@ -16,9 +16,9 @@
               (fn [h c p]
                 (swap! state assoc :health h :containers c :pm2 p :loading false))))
           nil)
-        nil)
+        #js [])  ; run once
       (if loading
-        (react/createElement "div" #js {:style #js {:display "flex" :justify-content "center" :align-items "center" :height "100vh"}}
+        (react/createElement "div" #js {:style #js {:display "flex" :justifyContent "center" :alignItems "center" :height "100vh"}}
           (react/createElement uxx/Spinner #js {:size "lg"}))
         (react/createElement uxx/UxxThemeProvider #js {:theme "monokai"}
           (react/createElement "div" #js {:style #js {:padding "2rem"}}
@@ -27,5 +27,5 @@
             (react/createElement uxx/MetricTile #js {:label "PM2" :value (str (count pm2))})))))))
 
 (defn mount! []
-  (let [root (react-dom/createRoot (js/document.getElementById "root"))]
-    (.render root (App))))
+  (let [root (react-dom/createRoot (js/document.getElementById "app"))]  ; "app" not "root"
+    (.render root (react/createElement App #js {}))))
