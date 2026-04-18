@@ -2,13 +2,15 @@
 
  :nrepl {:port 7888}
 
+ :http {:port 9635}        ; <-- shadow-cljs dashboard, pinned away from 9630
+
+ :dev-http {8091 "public"}
+
  :js-options
  {:js-package-dirs ["node_modules" "node_modules/.pnpm"]}
 
  :dependencies
  [[lilactown/helix "0.2.2"]]
-
- :dev-http {8091 "public"}   ; <-- serves public/ at localhost:8090
 
  :builds
  {:app
@@ -16,5 +18,4 @@
    :output-dir "public/js"
    :modules {:index {:init-fn control-plane.ui.core/mount!}}
    :compiler-options {:output-feature-set :es-next}
-   :npm {:react "react" :react-dom "react-dom"}
    :devtools {:repl-init-ns control-plane.ui.core}}}}  ; <-- AND THIS

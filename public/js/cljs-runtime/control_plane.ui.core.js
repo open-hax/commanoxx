@@ -7,12 +7,12 @@ if((typeof control_plane !== 'undefined') && (typeof control_plane.ui !== 'undef
 control_plane.ui.core.state = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"health","health",-295520649),null,new cljs.core.Keyword(null,"containers","containers",-2127048083),cljs.core.PersistentVector.EMPTY,new cljs.core.Keyword(null,"pm2","pm2",558965668),cljs.core.PersistentVector.EMPTY,new cljs.core.Keyword(null,"loading","loading",-737050189),true], null));
 }
 control_plane.ui.core.App = (function control_plane$ui$core$App(){
-var map__15294 = cljs.core.deref(control_plane.ui.core.state);
-var map__15294__$1 = cljs.core.__destructure_map(map__15294);
-var loading = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15294__$1,new cljs.core.Keyword(null,"loading","loading",-737050189));
-var health = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15294__$1,new cljs.core.Keyword(null,"health","health",-295520649));
-var containers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15294__$1,new cljs.core.Keyword(null,"containers","containers",-2127048083));
-var pm2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15294__$1,new cljs.core.Keyword(null,"pm2","pm2",558965668));
+var map__17020 = cljs.core.deref(control_plane.ui.core.state);
+var map__17020__$1 = cljs.core.__destructure_map(map__17020);
+var loading = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__17020__$1,new cljs.core.Keyword(null,"loading","loading",-737050189));
+var health = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__17020__$1,new cljs.core.Keyword(null,"health","health",-295520649));
+var containers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__17020__$1,new cljs.core.Keyword(null,"containers","containers",-2127048083));
+var pm2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__17020__$1,new cljs.core.Keyword(null,"pm2","pm2",558965668));
 module$node_modules$react$index.useEffect((function (){
 if(cljs.core.truth_(loading)){
 control_plane.ui.api.fetch_all((function (h,c,p){

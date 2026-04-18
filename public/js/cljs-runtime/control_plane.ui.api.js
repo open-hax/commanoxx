@@ -10,10 +10,10 @@ return Promise.all([control_plane.ui.api.fetch_json("/health"),control_plane.ui.
 var h = (results[(0)]);
 var c = (results[(1)]);
 var p = (results[(2)]);
-var G__15289 = h;
-var G__15290 = (c["containers"]);
-var G__15291 = (p["processes"]);
-return (callback.cljs$core$IFn$_invoke$arity$3 ? callback.cljs$core$IFn$_invoke$arity$3(G__15289,G__15290,G__15291) : callback.call(null,G__15289,G__15290,G__15291));
+var G__17000 = h;
+var G__17001 = (c["containers"]);
+var G__17002 = (p["processes"]);
+return (callback.cljs$core$IFn$_invoke$arity$3 ? callback.cljs$core$IFn$_invoke$arity$3(G__17000,G__17001,G__17002) : callback.call(null,G__17000,G__17001,G__17002));
 }));
 });
 
