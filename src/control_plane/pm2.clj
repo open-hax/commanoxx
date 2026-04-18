@@ -20,7 +20,7 @@
   "List all PM2 managed processes using JSON output."
   []
   (let [result (pm2 "jlist")]
-    (if (:error result)
+    (if (contains? result :error)
       {:error (:error result)}
       (try
         (let [data (json/read-str (:out result))]
@@ -39,13 +39,13 @@
                             :args (get p "pm2_env" "args")}}))
                 data))
         (catch Exception e
-          {:error (str "Parse error: " (.getMessage e))})))))
+          {:error (str "Parse error: " (.getMessage e)}))))))
 
 (defn status-summary
   "Get count of processes by status."
   []
   (let [result (pm2 "jlist")]
-    (if (:error result)
+    (if (contains? result :error)
       {:error (:error result)}
       (try
         (let [data (json/read-str (:out result))
@@ -61,7 +61,7 @@
   "Get memory/CPU summary from all processes."
   []
   (let [result (pm2 "jlist")]
-    (if (:error result)
+    (if (contains? result :error)
       {:error (:error result)}
       (try
         (let [data (json/read-str (:out result))
