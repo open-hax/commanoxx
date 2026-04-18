@@ -3,9 +3,10 @@
   (:require [control-plane.process :as proc]
             [control-plane.docker :as docker]
             [control-plane.pm2 :as pm2]
-            [control-plane.health :as health])
-  (:import [java.net ServerSocket Socket InetSocketAddress]
-           [java.io InputStreamReader BufferedReader OutputStreamWriter PrintWriter]))
+            [control-plane.health :as health]
+            [clojure.data.json :as json])
+  (:import [java.net ServerSocket]
+           [java.io InputStreamReader BufferedReader OutputStreamWriter]))
 
 (defmulti route-handler (fn [path] path))
 
@@ -66,7 +67,7 @@
         (let [path (second (re-find #"GET (/[^\s]*)" request-line))]
           (when path
             (let [response (route-handler path)
-                  body (pr-str response)
+                  body (json/write-str response)
                   body-bytes (.getBytes body "UTF-8")]
               (.write os "HTTP/1.1 200 OK\r\n")
               (.write os "Content-Type: application/json\r\n")

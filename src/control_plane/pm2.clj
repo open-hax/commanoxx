@@ -1,42 +1,30 @@
 (ns control-plane.pm2
-  "PM2 process management integration.
-   Queries PM2 daemon, lists processes, extracts metadata."
-  (:require [clojure.string :as str]
-            [clojure.java.shell :as shell]))
+  "PM2 process management integration."
+  (:require [clojure.java.shell :as shell]
+            [clojure.data.json :as json]))
 
-(defn pm2
-  "Run a pm2 command and return output."
-  [& args]
+(defn pm2-cmd [& args]
   (try
-    (let [result (apply shell/sh "pm2" args)]
-      {:out (:out result)
-       :err (:err result)
-       :exit (:exit result)})
+    (apply shell/sh "pm2" args)
     (catch Exception e
       {:error (.getMessage e)})))
 
-(defn list-processes
-  "List all PM2 managed processes (text format)."
-  []
-  (let [result (pm2 "list")]
-    (if (:error result)
-      {:error (:error result)}
-      (let [lines (str/split-lines (:out result))]
-        (mapv (fn [line]
-                (try
-                  (let [parts (str/split line #"\s+")
-                        name (nth parts 0 "")
-                        id (nth parts 1 "")]
-                    {:name name :id id})
-                  (catch Exception _ nil)))
-              (drop 2 lines))))))
+(defn list-processes []
+  (let [r (pm2-cmd "jlist")]
+    (when-not (contains? r :error)
+      (json/read-str (:out r)))))
 
-(defn status-summary
-  "Get count of processes by status."
-  []
-  {:pm2 "available"})
+(defn status-summary []
+  (let [r (pm2-cmd "jlist")]
+    (when-not (contains? r :error)
+      (let [data (json/read-str (:out r))
+            total (count data)
+            online (count (filter #(= (get % "pm2_env" "status") "online") data))]
+        {:total total :online online}))))
 
-(defn monit-summary
-  "Get memory/CPU summary from monit."
-  []
-  {:pm2 "check via pm2 list"})
+(defn monit-summary []
+  (let [r (pm2-cmd "jlist")]
+    (when-not (contains? r :error)
+      (let [data (json/read-str (:out r))
+            total-mem (reduce + 0 (map #(get (get % "monit") "memory" 0) data))]
+        {:total-memory total-mem :count (count data)}))))
