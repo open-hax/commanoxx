@@ -7,7 +7,8 @@
  :dev-http {8091 "public"}
 
  :js-options
- {:js-package-dirs ["node_modules" "node_modules/.pnpm"]}
+ {:js-package-dirs ["node_modules" "node_modules/.pnpm/node_modules"]
+  :js-provider :esm}
 
  :dependencies
  [[lilactown/helix "0.2.2"]]
@@ -17,5 +18,6 @@
   {:target :browser
    :output-dir "public/js"
    :modules {:index {:init-fn control-plane.ui.core/mount!}}
-   :compiler-options {:output-feature-set :es-next}
+   :compiler-options {:output-feature-set :es-next
+                      :rewrite-polyfills false}
    :devtools {:repl-init-ns control-plane.ui.core}}}}
